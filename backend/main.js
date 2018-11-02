@@ -1,8 +1,8 @@
 "use strict"
 const express = require("express");
-const registerMiddleware = require("./middleware");
-const registerRoutes = require("./routes/api");
+const Middleware = require("./middleware");
+const Routes = require("./routes/api");
 var app = express();
-registerMiddleware(app);
-registerRoutes(app);
+Middleware(app);
+Routes(app);
 app.listen(3000);

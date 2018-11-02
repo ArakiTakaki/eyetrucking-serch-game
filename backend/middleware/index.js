@@ -1,7 +1,11 @@
-const log = require("./log");
-/**
- * middlewareを定義するファイル
- */
-module.exports = function(express){
-  express.use(log());
+const MiddlewareClass = require("../lib/MiddlewareClass");
+
+class Middleware extends MiddlewareClass {
+  regist(){
+    this.add("log");
+  }
+}
+
+module.exports = function(express) {
+  new Middleware(express);
 }
