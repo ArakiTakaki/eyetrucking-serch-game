@@ -4,7 +4,8 @@
     "baseUrl": "./",
     "experimentalDecorators":true ,
     "paths": {
-      "~/*": ["./src/js/*"]
+      "~/*": ["./src/js/*"],
+      "scss/*": ["./src/scss/*"]
     }
   },
   "include": [

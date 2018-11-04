@@ -4,25 +4,19 @@ import { hot } from "react-hot-loader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
-import Movie from "./movie/Movie";
-import MouseMove from "./MouseMove";
+import Movie from "~/components/organisms/movie/Movie";
+import MouseMove from "~/components/organisms/MouseMove";
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
 });
-
 const mapStateToProps = state => ({ store: state });
-
 @hot(module)
 @connect(
   mapStateToProps,
   mapDispatchToProps
 )
-class Body extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class Index extends React.Component {
   render() {
     return (
       <div>
@@ -34,4 +28,4 @@ class Body extends React.Component {
   }
 }
 
-export default Body;
+export default Index;
