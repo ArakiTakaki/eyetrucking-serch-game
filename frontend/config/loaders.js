@@ -1,6 +1,6 @@
 const isSourceMaps = {
-  "development": true,
-  "production": false
+  development: true,
+  production: false
 };
 console.log(process.env.MODE);
 const isSourceMap = isSourceMaps[process.env.MODE] || false;
