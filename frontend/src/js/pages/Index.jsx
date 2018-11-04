@@ -1,5 +1,5 @@
 import React from "react";
-// import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
@@ -16,9 +16,18 @@ const mapStateToProps = state => ({ store: state });
 class Index extends React.Component {
   render() {
     return (
-      <div>
-        <MoveLinkEvent id="moveToTutorial" href="/tutorial" />
-      </div>
+      <Grid container justify="center" spacing={24}>
+        <Grid item xs={12}>
+          <Typography align="center" variant="display4">
+            きになる隊
+          </Typography>
+        </Grid>
+        <Grid item xs={8}>
+          <MoveLinkEvent id="moveToTutorial" href="/tutorial">
+            チュートリアルを開始する
+          </MoveLinkEvent>
+        </Grid>
+      </Grid>
     );
   }
 }

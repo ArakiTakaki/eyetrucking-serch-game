@@ -16,10 +16,10 @@ import { Button } from "@material-ui/core";
 function location(props, event) {
   const { top, right, bottom, left } = props;
   if (
-    top < event.pageX &&
-    bottom > event.pageX &&
-    left < event.pageY &&
-    right > event.pageY
+    top < event.pageY &&
+    bottom > event.pageY &&
+    left < event.pageX &&
+    right > event.pageX
   ) {
     return true;
   }

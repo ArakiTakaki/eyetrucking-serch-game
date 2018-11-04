@@ -5,24 +5,24 @@ import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 
 import { withRouter } from "react-router";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-  withStyles
-} from "@material-ui/core";
+import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 
 const styles = {
-  card: {
+  cardCircle: {
     borderRadius: "50%",
     width: 150,
-    height: 150,
+    height: 100,
+    background: "#CC3333"
+  },
+  cardSquare: {
+    minWidth: 150,
+    maxWidth: "80vw",
+    height: 100,
     background: "#CC3333"
   },
   media: {
     position: "relative",
-    top: "35px",
+    top: "12px",
     color: "#fff"
   }
 };
@@ -61,16 +61,23 @@ class MoveLinkEvent extends React.Component {
       left: rect.left,
       func: this.moveToLink.bind(this)
     };
+    console.table(addEvent);
     this.props.actions.addComponentEvent(addEvent);
   }
 
   render() {
-    const { classes, id } = this.props;
+    const { classes, id, circle } = this.props;
+    const { cardCircle, cardSquare } = classes;
+    const card = circle ? cardCircle : cardSquare;
     return (
-      <Card id={id} className={classes.card + " OverEventClass"}>
+      <Card id={id} className={card + " OverEventClass"}>
         <CardContent>
-          <Typography className={classes.media} variant="display2">
-            NEXT
+          <Typography
+            align="center"
+            className={classes.media}
+            variant="display2"
+          >
+            {this.props.children}
           </Typography>
         </CardContent>
       </Card>

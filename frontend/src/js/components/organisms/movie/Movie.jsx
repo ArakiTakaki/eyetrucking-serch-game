@@ -39,6 +39,9 @@ class Movie extends React.Component {
     console.log(this.video.pageX);
     console.log(this.video.pageY);
   }
+  onEnded() {
+    console.log("end");
+  }
 
   nowLoad(event) {
     console.log(event);
@@ -51,9 +54,10 @@ class Movie extends React.Component {
           className={styles.movie}
           onTimeUpdate={this.onTimeUpdate.bind(this)}
           id="video"
-          onPlay={this.nowLoad.bind(this)}
+          onPlaying={this.nowLoad.bind(this)}
           width="100%"
           src="http://localhost:3000/movies/IMG_9965.MOV"
+          autoPlay
         />
         <Button onClick={this.onLoadEvent.bind(this)}>再生</Button>
         <Button onClick={this.onStopEvent.bind(this)}>停止</Button>
