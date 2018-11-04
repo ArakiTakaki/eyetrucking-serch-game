@@ -7,7 +7,7 @@ const WebpackObfuscator = require("webpack-obfuscator");
 
 module.exports = {
   mode: "production",
-  entry: ["./src/js/index.jsx"],
+  entry: ["./src/js/index.jsx",],
   module: {
     rules: loaders
   },
@@ -17,7 +17,7 @@ module.exports = {
     new WebpackObfuscator({ rotateUnicodeArray: true })
   ],
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './server/public'),
     filename: 'bundle.js',
     publicPath: '/',
   }

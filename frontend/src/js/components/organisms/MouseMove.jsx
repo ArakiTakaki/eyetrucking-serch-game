@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 import style from "scss/test.scss";
+import { Button } from "@material-ui/core";
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
@@ -20,9 +21,8 @@ const mapStateToProps = state => ({ store: state });
 class MouseMove extends React.Component {
   constructor(props) {
     super(props);
-    this.mouseX = 0;
-    this.mouseY = 0;
     this.cursor;
+    this.date = new Date().getSeconds();
   }
 
   componentDidMount() {
@@ -30,10 +30,13 @@ class MouseMove extends React.Component {
   }
 
   onMove(event) {
-    this.mouseX = event.pageX;
-    this.mouseY = event.pageY;
-    this.cursor.style.left = `${this.mouseX}px`;
-    this.cursor.style.top = `${this.mouseY}px`;
+    this.cursor.style.left = `${event.pageX}px`;
+    this.cursor.style.top = `${event.pageY}px`;
+    const now = new Date().getSeconds();
+    if (this.date !== now) {
+      this.date = now;
+      this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
+    }
   }
 
   render() {

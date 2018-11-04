@@ -7,6 +7,8 @@ const reducer = (state, action) => {
       return { ...state, number: state.number + 1 };
     case Actions.DECREMENT:
       return { ...state, number: state.number - 1 };
+    case Actions.MOUSE_LOCATION_REGISTER:
+      return { ...state, mouse: payload };
     default:
       return state;
   }

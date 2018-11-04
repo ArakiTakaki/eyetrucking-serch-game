@@ -1,12 +1,11 @@
 {
-  "name": "frontend-team-rookie-2019-araki",
+  "name": "eyetrucking",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:team-lab/frontend-team-rookie-2019-araki.git",
   "author": "ArakiTakaki <araki_takaki@yahoo.co.jp>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env MODE=development webpack-dev-server --config ./webpack.develop.js --open",
+    "start": "cross-env MODE=development webpack-dev-server --config ./webpack.develop.js --open --history-api-fallback",
     "dev": "cross-env MODE=development  webpack --config ./webpack.develop.js --watch",
     "prod": "cross-env MODE=production webpack --config ./webpack.production.js",
     "fix": "prettier --write src/js/**/*",
@@ -31,13 +30,15 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
     "reset-css": "^4.0.1",
-    "video-react": "^0.13.1"
+    "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^3.4.11",

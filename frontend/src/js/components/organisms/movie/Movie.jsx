@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 import { Button } from "@material-ui/core";
+import styles from "scss/test.scss";
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
@@ -47,6 +48,7 @@ class Movie extends React.Component {
     return (
       <div>
         <video
+          className={styles.movie}
           onTimeUpdate={this.onTimeUpdate.bind(this)}
           id="video"
           onPlay={this.nowLoad.bind(this)}

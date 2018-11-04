@@ -1,5 +1,6 @@
 
 .mousemove{
+  z-index: 10;
   position: fixed;
   top:0;
   bottom: 0;
@@ -21,4 +22,7 @@
     filter: blur(5px);
     transform: translate3d(-50%,-50%, 0);
   }
+}
+.movie{
+  z-index: -100;
 }
