@@ -55,9 +55,11 @@ class MouseMove extends React.Component {
     if (this.date !== now) {
       this.date = now;
       // TODO forでループさせて所定のイベントが１秒以上ひっかかっているのであればtrueにする処理を考える。
-      const pageEvent = this.props.store.events[0];
-      if (location(pageEvent, event)) {
-        this.props.store.events[0].func("/tutorial");
+      const pageEvents = this.props.store.events;
+      for (let pageEvent of pageEvents) {
+        if (location(pageEvent, event)) {
+          pageEvent.func();
+        }
       }
     }
   }
