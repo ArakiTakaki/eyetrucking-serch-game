@@ -15,7 +15,9 @@
         "sourceType": "module"
     },
     "globals": {
-        "module": true
+        "module": true,
+        "process": true,
+        "require": true
     },
     "plugins": [
         "react"

@@ -1,15 +1,15 @@
 {
-  "name": "backend",
+  "name": "eyetrucking-backend",
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
   "scripts": {
     "start": "cross-env MODE=development node-dev ./main.js",
-    "server": "cross-env MODE=production pm2 start main.js --name chat-app",
-    "delete": "pm2 delete chat-app",
-    "restart": "cross-env MODE=production pm2 restart chat-app",
-    "stop": "pm2 stop chat-app",
-    "log": "pm2 logs chat-app",
+    "server": "cross-env MODE=production pm2 start main.js --name eye-trucking-serve",
+    "delete": "pm2 delete eye-trucking-serve",
+    "restart": "cross-env MODE=production pm2 restart eye-trucking-serve",
+    "stop": "pm2 stop eye-trucking-serve",
+    "log": "pm2 logs eye-trucking-serve",
     "monit": "pm2 monit"
   },
   "dependencies": {
