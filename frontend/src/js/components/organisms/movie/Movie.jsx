@@ -22,6 +22,7 @@ class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.video;
+    this.trucking = [];
   }
   componentDidMount() {
     this.video = document.getElementById("video");
@@ -34,13 +35,15 @@ class Movie extends React.Component {
     document.getElementById("video").pause();
   }
   onTimeUpdate() {
-    console.log(this.video);
-    console.log(this.video.currentTime);
-    console.log(this.video.pageX);
-    console.log(this.video.pageY);
+    this.trucking.push({
+      x: this.props.store.mouse.x,
+      y: this.props.store.mouse.y,
+      time: this.video.currentTime
+    });
   }
   onEnded() {
     console.log("end");
+    console.log(JSON.stringify(this.trucking));
   }
 
   nowLoad(event) {
@@ -53,6 +56,7 @@ class Movie extends React.Component {
         <video
           className={styles.movie}
           onTimeUpdate={this.onTimeUpdate.bind(this)}
+          onEnded={this.onEnded.bind(this)}
           id="video"
           onPlaying={this.nowLoad.bind(this)}
           width="100%"
