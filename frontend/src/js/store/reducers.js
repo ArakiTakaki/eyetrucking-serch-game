@@ -9,6 +9,8 @@ const reducer = (state, action) => {
       return { ...state, number: state.number - 1 };
     case Actions.MOUSE_LOCATION_REGISTER:
       return { ...state, mouse: payload };
+    case Actions.ADD_COMPONENT_EVENT:
+      return { ...state, events: [...state, payload] };
     default:
       return state;
   }

@@ -9,3 +9,9 @@ export const mouseLocationRegister = (x, y) => ({
   type: MOUSE_LOCATION_REGISTER,
   payload: { x: x, y: y }
 });
+
+export const ADD_COMPONENT_EVENT = "ADD_COMPONENT_EVENT";
+export const addComponentEvent = (top, right, bottom, left, event) => ({
+  type: ADD_COMPONENT_EVENT,
+  payload: { top, right, bottom, left, event }
+});

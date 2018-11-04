@@ -52,7 +52,14 @@ class MoveLinkEvent extends React.Component {
 
   componentDidMount() {
     const event = document.getElementsByClassName("OverEventClass");
-    console.log(event[0]);
+    const rect = event[0].getBoundingClientRect();
+    const addEvent = {
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+      left: rect.left,
+      func: this.moveToLink.bind(this)("/tutorial")
+    };
   }
 
   render() {
