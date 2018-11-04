@@ -50,10 +50,10 @@ class MouseMove extends React.Component {
   onMove(event) {
     this.cursor.style.left = `${event.pageX}px`;
     this.cursor.style.top = `${event.pageY}px`;
+    this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
     const now = new Date().getSeconds();
     if (this.date !== now) {
       this.date = now;
-      this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
       // TODO forでループさせて所定のイベントが１秒以上ひっかかっているのであればtrueにする処理を考える。
       const pageEvent = this.props.store.events[0];
       if (location(pageEvent, event)) {
