@@ -51,21 +51,23 @@ class MoveLinkEvent extends React.Component {
   }
 
   componentDidMount() {
-    const event = document.getElementsByClassName("OverEventClass");
-    const rect = event[0].getBoundingClientRect();
+    const element = document.getElementById(this.props.id);
+    const rect = element.getBoundingClientRect();
     const addEvent = {
+      id: this.props.id,
       top: rect.top,
       right: rect.right,
       bottom: rect.bottom,
       left: rect.left,
-      func: this.moveToLink.bind(this)("/tutorial")
+      func: this.moveToLink.bind(this)
     };
+    this.props.actions.addComponentEvent(addEvent);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, id } = this.props;
     return (
-      <Card className={classes.card + " OverEventClass"}>
+      <Card id={id} className={classes.card + " OverEventClass"}>
         <CardContent>
           <Typography className={classes.media} variant="display2">
             NEXT

@@ -17,7 +17,7 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <MoveLinkEvent href="/tutorial" />
+        <MoveLinkEvent id="moveToTutorial" href="/tutorial" />
       </div>
     );
   }

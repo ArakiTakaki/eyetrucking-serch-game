@@ -11,7 +11,13 @@ export const mouseLocationRegister = (x, y) => ({
 });
 
 export const ADD_COMPONENT_EVENT = "ADD_COMPONENT_EVENT";
-export const addComponentEvent = (top, right, bottom, left, event) => ({
+export const addComponentEvent = event => ({
   type: ADD_COMPONENT_EVENT,
-  payload: { top, right, bottom, left, event }
+  payload: event
+});
+
+export const DELETE_COMPONENT_EVENT = "DELETE_COMPONENT_EVENT";
+export const deleteComponentEvent = eventId => ({
+  type: DELETE_COMPONENT_EVENT,
+  payload: eventId
 });
