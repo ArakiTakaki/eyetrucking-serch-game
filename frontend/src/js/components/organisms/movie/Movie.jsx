@@ -62,6 +62,7 @@ class Movie extends React.Component {
           width="100%"
           src="http://localhost:3000/movies/IMG_9965.MOV"
           autoPlay
+          muted
         />
         <Button onClick={this.onLoadEvent.bind(this)}>再生</Button>
         <Button onClick={this.onStopEvent.bind(this)}>停止</Button>
