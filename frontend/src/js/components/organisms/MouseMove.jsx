@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 import style from "scss/test.scss";
-import { Button } from "@material-ui/core";
 
 /**
  * 第一引数に比較したいロケーション
@@ -54,7 +53,6 @@ class MouseMove extends React.Component {
     const now = new Date().getSeconds();
     if (this.date !== now) {
       this.date = now;
-      // TODO forでループさせて所定のイベントが１秒以上ひっかかっているのであればtrueにする処理を考える。
       const pageEvents = this.props.store.events;
       for (let pageEvent of pageEvents) {
         if (location(pageEvent, event)) {
