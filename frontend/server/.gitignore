@@ -1,4 +1,4 @@
-/movies
 /node_modules
+/public/movies
 /public/index.html
 /public/bundle.js
