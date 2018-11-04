@@ -46,10 +46,6 @@ class MoveLinkEvent extends React.Component {
     };
   }
 
-  moveToLink() {
-    this.props.history.push(this.props.href);
-  }
-
   componentDidMount() {
     const element = document.getElementById(this.props.id);
     const rect = element.getBoundingClientRect();
@@ -59,10 +55,13 @@ class MoveLinkEvent extends React.Component {
       right: rect.right,
       bottom: rect.bottom,
       left: rect.left,
-      func: this.moveToLink.bind(this)
+      func: this.props.func
     };
     console.table(addEvent);
     this.props.actions.addComponentEvent(addEvent);
+  }
+  componentWillUnmount() {
+    this.props.actions.deleteComponentEvent(this.props.id);
   }
 
   render() {

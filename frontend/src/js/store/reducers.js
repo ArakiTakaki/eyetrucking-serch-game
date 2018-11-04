@@ -11,6 +11,11 @@ const reducer = (state, action) => {
       return { ...state, mouse: payload };
     case Actions.ADD_COMPONENT_EVENT:
       return { ...state, events: [...state.events, payload] };
+    case Actions.DELETE_COMPONENT_EVENT:
+      return {
+        ...state,
+        events: state.events.filter(event => event.id !== payload)
+      };
     default:
       return state;
   }

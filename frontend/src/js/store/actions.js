@@ -17,7 +17,7 @@ export const addComponentEvent = event => ({
 });
 
 export const DELETE_COMPONENT_EVENT = "DELETE_COMPONENT_EVENT";
-export const deleteComponentEvent = eventId => ({
+export const deleteComponentEvent = idx => ({
   type: DELETE_COMPONENT_EVENT,
-  payload: eventId
+  payload: idx
 });
