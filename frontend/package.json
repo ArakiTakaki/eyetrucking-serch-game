@@ -8,7 +8,8 @@
     "start": "cross-env MODE=development webpack-dev-server --config ./webpack.develop.js --open --history-api-fallback",
     "dev": "cross-env MODE=development  webpack --config ./webpack.develop.js --watch",
     "prod": "cross-env MODE=production webpack --config ./webpack.production.js",
-    "fix": "prettier --write src/js/**/*",
+    "fix": "prettier --write src/js/**/*.js",
+    "fixjsx": "prettier --write src/js/**/*.jsx",
     "build-storybook": "build-storybook",
     "lint": "eslint \"**/*.{js,jsx}\"",
     "storybook": "start-storybook -p 9001 -c .storybook"

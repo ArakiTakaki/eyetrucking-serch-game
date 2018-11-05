@@ -21,3 +21,9 @@ export const deleteComponentEvent = idx => ({
   type: DELETE_COMPONENT_EVENT,
   payload: idx
 });
+
+export const CONTENT_VIDEO_STOP = "CONTENT_VIDEO_STOP";
+export const contentVideoStop = () => ({ type: CONTENT_VIDEO_STOP });
+
+export const CONTENT_VIDEO_START = "CONTENT_VIDEO_START";
+export const contentVideoStart = () => ({ type: CONTENT_VIDEO_START });

@@ -49,13 +49,14 @@ class MouseMove extends React.Component {
   onMove(event) {
     this.cursor.style.left = `${event.pageX}px`;
     this.cursor.style.top = `${event.pageY}px`;
-    this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
     const now = new Date().getSeconds();
     if (this.date !== now) {
       this.date = now;
+      this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
       const pageEvents = this.props.store.events;
       for (let pageEvent of pageEvents) {
         if (location(pageEvent, event)) {
+          console.log("function");
           pageEvent.func();
         }
       }

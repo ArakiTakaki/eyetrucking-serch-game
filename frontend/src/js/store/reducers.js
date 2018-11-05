@@ -16,6 +16,10 @@ const reducer = (state, action) => {
         ...state,
         events: state.events.filter(event => event.id !== payload)
       };
+    case Actions.CONTENT_VIDEO_START:
+      return { ...state, video: { play: true } };
+    case Actions.CONTENT_VIDEO_STOP:
+      return { ...state, video: { play: false } };
     default:
       return state;
   }

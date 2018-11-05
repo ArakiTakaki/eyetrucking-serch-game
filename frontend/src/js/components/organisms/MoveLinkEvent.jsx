@@ -11,7 +11,7 @@ const styles = {
   cardCircle: {
     borderRadius: "50%",
     width: 150,
-    height: 100,
+    height: 150,
     background: "#CC3333"
   },
   cardSquare: {
@@ -20,7 +20,12 @@ const styles = {
     height: 100,
     background: "#CC3333"
   },
-  media: {
+  mediaCircle: {
+    position: "relative",
+    top: "32px",
+    color: "#fff"
+  },
+  mediaSquare: {
     position: "relative",
     top: "12px",
     color: "#fff"
@@ -66,16 +71,13 @@ class MoveLinkEvent extends React.Component {
 
   render() {
     const { classes, id, circle } = this.props;
-    const { cardCircle, cardSquare } = classes;
+    const { cardCircle, cardSquare, mediaCircle, mediaSquare } = classes;
     const card = circle ? cardCircle : cardSquare;
+    const media = circle ? mediaCircle : mediaSquare;
     return (
       <Card id={id} className={card + " OverEventClass"}>
         <CardContent>
-          <Typography
-            align="center"
-            className={classes.media}
-            variant="display2"
-          >
+          <Typography align="center" className={media} variant="display2">
             {this.props.children}
           </Typography>
         </CardContent>
