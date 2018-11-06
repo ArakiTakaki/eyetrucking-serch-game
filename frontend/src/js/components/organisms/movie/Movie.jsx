@@ -7,6 +7,34 @@ import * as Actions from "~/store/actions";
 import styles from "scss/test.scss";
 import { Grid } from "@material-ui/core";
 import MoveLinkEvent from "~/components/organisms/MoveLinkEvent";
+import MovieAction from "~/components/organisms/MovieAction";
+
+const MOCK_EVENTS = [
+  {
+    name: "TestEvent",
+    x: 400,
+    y: 300,
+    time: 10, // 秒で指定する。
+    event: {
+      a: {
+        description: "1. ここがおかしい",
+        point: 10
+      },
+      b: {
+        description: "2. ここがへん",
+        point: 5
+      },
+      c: {
+        description: "3. おかしくない？",
+        point: 2
+      },
+      d: {
+        description: "4. わからない",
+        point: 0
+      }
+    }
+  }
+];
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
@@ -67,8 +95,9 @@ class Movie extends React.Component {
             onEnded={this.onEnded.bind(this)}
             id="video"
             onPlaying={this.onPlaying.bind(this)}
-            width="100%"
-            src="http://localhost:3000/movies/IMG_9965.MOV"
+            width="1130"
+            height="630"
+            src={`http://${location.hostname}:3000/movies/IMG_9965.MOV`}
             autoPlay
             muted
           />
@@ -83,9 +112,19 @@ class Movie extends React.Component {
             Start
           </MoveLinkEvent>
         </Grid>
+        <MovieAction
+          id="movieEvent01"
+          func={() => {
+            console.log("test");
+          }}
+          top={120}
+          left={200}
+        />
       </Grid>
     );
   }
 }
 
+// イベントの雛形
+// <MovieAction id="movieEvent01" func={() => { console.log("test"); }} top={120} left={200}/>
 export default Movie;

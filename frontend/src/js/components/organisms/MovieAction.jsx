@@ -8,27 +8,15 @@ import { withRouter } from "react-router";
 import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 
 const styles = {
-  cardCircle: {
-    borderRadius: "50%",
-    width: 150,
-    height: 150,
-    background: "#CC3333"
-  },
-  cardSquare: {
-    minWidth: 150,
-    maxWidth: "80vw",
+  card: {
+    position: "fixed",
+    width: 100,
     height: 100,
-    background: "#CC3333"
-  },
-  mediaCircle: {
-    position: "relative",
-    top: "32px",
-    color: "#fff"
-  },
-  mediaSquare: {
-    position: "relative",
-    top: "12px",
-    color: "#fff"
+    top: 0,
+    left: 0,
+    background: "#0005",
+    opacty: 0.2,
+    borderRadius: "50%"
   }
 };
 
@@ -46,13 +34,13 @@ const mapStateToProps = state => ({ store: state });
 class MoveLinkEvent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      test: ""
-    };
   }
 
   componentDidMount() {
     const element = document.getElementById(this.props.id);
+    element.style.top = `${this.props.top}px`;
+    element.style.left = `${this.props.left}px`;
+    console.table(this.props);
     const rect = element.getBoundingClientRect();
     const addEvent = {
       id: this.props.id,
@@ -69,34 +57,12 @@ class MoveLinkEvent extends React.Component {
     this.props.actions.deleteComponentEvent(this.props.id);
   }
 
-  onOver() {
-    console.log("over event");
-  }
-  onOut() {
-    console.log("out event");
-  }
-
   render() {
-    const { classes, id, circle } = this.props;
-    const { cardCircle, cardSquare, mediaCircle, mediaSquare } = classes;
-    const card = circle ? cardCircle : cardSquare;
-    const media = circle ? mediaCircle : mediaSquare;
-    return (
-      <Card
-        id={id}
-        className={card + " OverEventClass"}
-        onMouseOver={this.onOver.bind(this)}
-        onMouseOut={this.onOut.bind(this)}
-      >
-        <CardContent>
-          <Typography align="center" className={media} variant="display2">
-            {this.props.children}
-          </Typography>
-        </CardContent>
-      </Card>
-    );
+    const { classes, id } = this.props;
+    const { card } = classes;
+    return <div id={id} className={card} />;
   }
 }
 
-// id func children circle
+// id func x y
 export default MoveLinkEvent;
