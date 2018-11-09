@@ -7,6 +7,8 @@ import * as Actions from "~/store/actions";
 import { withRouter } from "react-router";
 import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 
+import PropTypes from "prop-types";
+
 const styles = {
   cardCircle: {
     borderRadius: "50%",
@@ -44,13 +46,6 @@ const mapStateToProps = state => ({ store: state });
   mapDispatchToProps
 )
 class MoveLinkEvent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      test: ""
-    };
-  }
-
   componentDidMount() {
     const element = document.getElementById(this.props.id);
     const rect = element.getBoundingClientRect();
@@ -60,20 +55,13 @@ class MoveLinkEvent extends React.Component {
       right: rect.right,
       bottom: rect.bottom,
       left: rect.left,
-      func: this.props.func
+      func: this.props.func,
+      immadient: false
     };
-    console.table(addEvent);
     this.props.actions.addComponentEvent(addEvent);
   }
   componentWillUnmount() {
     this.props.actions.deleteComponentEvent(this.props.id);
-  }
-
-  onOver() {
-    console.log("over event");
-  }
-  onOut() {
-    console.log("out event");
   }
 
   render() {
@@ -82,12 +70,7 @@ class MoveLinkEvent extends React.Component {
     const card = circle ? cardCircle : cardSquare;
     const media = circle ? mediaCircle : mediaSquare;
     return (
-      <Card
-        id={id}
-        className={card + " OverEventClass"}
-        onMouseOver={this.onOver.bind(this)}
-        onMouseOut={this.onOut.bind(this)}
-      >
+      <Card id={id} className={card}>
         <CardContent>
           <Typography align="center" className={media} variant="display2">
             {this.props.children}
@@ -97,6 +80,10 @@ class MoveLinkEvent extends React.Component {
     );
   }
 }
-
+MoveLinkEvent.propTypes = {
+  circle: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  func: PropTypes.func.isRequired
+};
 // id func children circle
 export default MoveLinkEvent;

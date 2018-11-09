@@ -35,9 +35,7 @@ class Body extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <div className={classes.content}>
-          <p>test</p>
-        </div>
+        <div className={classes.content} />
       </div>
     );
   }

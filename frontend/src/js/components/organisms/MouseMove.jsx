@@ -6,23 +6,28 @@ import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 import style from "scss/test.scss";
 
+// 選択範囲のはばを調整する。
+const SC = 50;
 /**
  * 第一引数に比較したいロケーション
  * 第二引数に比較を行うマウス座標を入れる
  * @param { top, right, bottom, left} props 座標情報
  * @param { mouseEventObject } event マウス座標
  */
-function location(props, event) {
+function location(props, x, y) {
   const { top, right, bottom, left } = props;
-  if (
-    top < event.pageY &&
-    bottom > event.pageY &&
-    left < event.pageX &&
-    right > event.pageX
-  ) {
+  if (top - SC < y && bottom + SC > y && left - SC < x && right + SC > x) {
     return true;
   }
 }
+
+const eventSerch = (events, x, y) => {
+  for (let event of events) {
+    if (location(event, x, y)) {
+      event.func();
+    }
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
@@ -40,27 +45,26 @@ class MouseMove extends React.Component {
     super(props);
     this.cursor;
     this.date = new Date().getSeconds();
+    this.x = 0;
+    this.y = 0;
+    this.count = 0;
   }
 
   componentDidMount() {
     this.cursor = document.getElementById("cursor");
+    setInterval(() => {
+      const events = this.props.store.events;
+      eventSerch(events, this.x, this.y);
+      // TODO ログうざいので一旦切る
+      // this.props.actions.mouseLocationRegister(this.x, this.y);
+    }, 200);
   }
 
   onMove(event) {
     this.cursor.style.left = `${event.pageX}px`;
     this.cursor.style.top = `${event.pageY}px`;
-    const now = new Date().getSeconds();
-    if (this.date !== now) {
-      this.date = now;
-      this.props.actions.mouseLocationRegister(event.pageX, event.pageY);
-      const pageEvents = this.props.store.events;
-      for (let pageEvent of pageEvents) {
-        if (location(pageEvent, event)) {
-          console.log("function");
-          pageEvent.func();
-        }
-      }
-    }
+    this.x = event.pageX;
+    this.y = event.pageY;
   }
 
   render() {

@@ -9,7 +9,7 @@ import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 
 const styles = {
   card: {
-    position: "fixed",
+    position: "absolute",
     width: 100,
     height: 100,
     top: 0,
@@ -40,7 +40,6 @@ class MoveLinkEvent extends React.Component {
     const element = document.getElementById(this.props.id);
     element.style.top = `${this.props.top}px`;
     element.style.left = `${this.props.left}px`;
-    console.table(this.props);
     const rect = element.getBoundingClientRect();
     const addEvent = {
       id: this.props.id,
@@ -50,7 +49,6 @@ class MoveLinkEvent extends React.Component {
       left: rect.left,
       func: this.props.func
     };
-    console.table(addEvent);
     this.props.actions.addComponentEvent(addEvent);
   }
   componentWillUnmount() {

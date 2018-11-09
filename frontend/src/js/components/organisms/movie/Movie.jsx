@@ -8,13 +8,18 @@ import styles from "scss/test.scss";
 import { Grid } from "@material-ui/core";
 import MoveLinkEvent from "~/components/organisms/MoveLinkEvent";
 import MovieAction from "~/components/organisms/MovieAction";
+import MoviePlayer from "~/components/modules/MoviePlayer";
 
+const MOCK_SRC = `http://${location.hostname}:3000/movies/IMG_9965.MOV`;
 const MOCK_EVENTS = [
   {
     name: "TestEvent",
-    x: 400,
-    y: 300,
-    time: 10, // 秒で指定する。
+    startX: 400,
+    endX: 500,
+    startY: 300,
+    endY: 400,
+    startTime: 10, // 秒で指定する。
+    endTime: 15, // 秒で指定する。
     event: {
       a: {
         description: "1. ここがおかしい",
@@ -89,26 +94,23 @@ class Movie extends React.Component {
     return (
       <Grid container justify="center">
         <Grid item xs={9}>
-          <video
-            className={styles.movie}
-            onTimeUpdate={this.onTimeUpdate.bind(this)}
-            onEnded={this.onEnded.bind(this)}
-            id="video"
-            onPlaying={this.onPlaying.bind(this)}
-            width="1130"
-            height="630"
-            src={`http://${location.hostname}:3000/movies/IMG_9965.MOV`}
-            autoPlay
-            muted
-          />
+          <MoviePlayer onPlaying={this.onPlaying.bind(this)} src={MOCK_SRC} />
         </Grid>
         <Grid item xs={6}>
-          <MoveLinkEvent id="videoStop" func={this.onStopEvent.bind(this)}>
+          <MoveLinkEvent
+            circle
+            id="videoStop"
+            func={this.onStopEvent.bind(this)}
+          >
             Stop
           </MoveLinkEvent>
         </Grid>
         <Grid item xs={6}>
-          <MoveLinkEvent id="videoStart" func={this.onLoadEvent.bind(this)}>
+          <MoveLinkEvent
+            circle
+            id="videoStart"
+            func={this.onLoadEvent.bind(this)}
+          >
             Start
           </MoveLinkEvent>
         </Grid>
