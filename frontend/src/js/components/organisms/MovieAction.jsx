@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
 
 import { withRouter } from "react-router";
-import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const styles = {
   card: {
@@ -31,25 +32,45 @@ const mapStateToProps = state => ({ store: state });
   mapStateToProps,
   mapDispatchToProps
 )
-class MoveLinkEvent extends React.Component {
+class MovieAction extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    const element = document.getElementById(this.props.id);
-    element.style.top = `${this.props.top}px`;
-    element.style.left = `${this.props.left}px`;
-    const rect = element.getBoundingClientRect();
-    const addEvent = {
-      id: this.props.id,
-      top: rect.top,
-      right: rect.right,
-      bottom: rect.bottom,
-      left: rect.left,
-      func: this.props.func
-    };
-    this.props.actions.addComponentEvent(addEvent);
+    const moveLocate = (this.startX - this.endX) >> 2;
+    let count = 0;
+    // セットし直すイベントを設定する。
+    // rectで初期位置を算出する。
+    // timeから、何回ループさせるか、算出する。
+    setInterval(() => {
+      let location = this.startX + moveLocate * count;
+
+      // const addEvent = {
+      //   id: this.props.id,
+      //   top: rect.top,
+      //   right: rect.right,
+      //   bottom: rect.bottom,
+      //   left: rect.left,
+      //   func: this.props.func
+      // };
+      // this.props.actions.addComponentEvent(addEvent);
+      count++;
+    }, 250);
+
+    // const element = document.getElementById(this.props.id);
+    // element.style.top = `${this.props.top}px`;
+    // element.style.left = `${this.props.left}px`;
+    // const rect = element.getBoundingClientRect();
+    // const addEvent = {
+    //   id: this.props.id,
+    //   top: rect.top,
+    //   right: rect.right,
+    //   bottom: rect.bottom,
+    //   left: rect.left,
+    //   func: this.props.func
+    // };
+    // this.props.actions.addComponentEvent(addEvent);
   }
   componentWillUnmount() {
     this.props.actions.deleteComponentEvent(this.props.id);
@@ -62,5 +83,9 @@ class MoveLinkEvent extends React.Component {
   }
 }
 
+MovieAction.propTypes = {
+  id: PropTypes.string.isRequired,
+  func: PropTypes.func.isRequired
+};
 // id func x y
-export default MoveLinkEvent;
+export default MovieAction;
