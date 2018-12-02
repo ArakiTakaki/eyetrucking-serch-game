@@ -11,7 +11,10 @@ const initialState = {
     x: 0,
     y: 0
   },
-  events: []
+  events: [],
+  video: {
+    play: false
+  }
 };
 
 export default initialState;

@@ -25,7 +25,7 @@ module.exports = {
     contentBase: "/dist/js",
     port: 3030,
     // 他デバイスで見たい時用
-    // host: "0.0.0.0",
+    host: "0.0.0.0",
     hot: true,
     overlay: true,
     filename: 'bundle.js',

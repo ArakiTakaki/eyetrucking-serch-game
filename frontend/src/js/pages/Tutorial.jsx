@@ -1,6 +1,5 @@
 import React from "react";
 import { hot } from "react-hot-loader";
-// import { Typography, Grid, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
@@ -16,12 +15,12 @@ const mapStateToProps = state => ({ store: state });
   mapDispatchToProps
 )
 class Index extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    return (
-      <div>
-        <Movie />
-      </div>
-    );
+    return <Movie />;
   }
 }
 

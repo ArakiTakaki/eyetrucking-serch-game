@@ -4,8 +4,42 @@ import { hot } from "react-hot-loader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Actions from "~/store/actions";
-import { Button } from "@material-ui/core";
 import styles from "scss/test.scss";
+import { Grid } from "@material-ui/core";
+import MoveLinkEvent from "~/components/organisms/MoveLinkEvent";
+import MovieAction from "~/components/organisms/MovieAction";
+import MoviePlayer from "~/components/modules/MoviePlayer";
+
+const MOCK_SRC = `http://${location.hostname}:3000/movies/IMG_9965.MOV`;
+const MOCK_EVENTS = [
+  {
+    name: "TestEvent",
+    startX: 400,
+    endX: 500,
+    startY: 300,
+    endY: 400,
+    startTime: 10, // 秒で指定する。
+    endTime: 15, // 秒で指定する。
+    event: {
+      a: {
+        description: "1. ここがおかしい",
+        point: 10
+      },
+      b: {
+        description: "2. ここがへん",
+        point: 5
+      },
+      c: {
+        description: "3. おかしくない？",
+        point: 2
+      },
+      d: {
+        description: "4. わからない",
+        point: 0
+      }
+    }
+  }
+];
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(Actions, dispatch)
@@ -29,10 +63,15 @@ class Movie extends React.Component {
   }
 
   onLoadEvent() {
-    document.getElementById("video").play();
+    console.log("TO START");
+    this.video.play();
   }
   onStopEvent() {
-    document.getElementById("video").pause();
+    console.log("TO STOP");
+    this.video.pause();
+  }
+  onVideoStop() {
+    this.props.actions.contentVideoStop();
   }
   onTimeUpdate() {
     this.trucking.push({
@@ -46,28 +85,48 @@ class Movie extends React.Component {
     console.log(JSON.stringify(this.trucking));
   }
 
-  nowLoad(event) {
+  onPlaying(event) {
     console.log(event);
+    this.props.actions.contentVideoStart();
   }
 
   render() {
     return (
-      <div>
-        <video
-          className={styles.movie}
-          onTimeUpdate={this.onTimeUpdate.bind(this)}
-          onEnded={this.onEnded.bind(this)}
-          id="video"
-          onPlaying={this.nowLoad.bind(this)}
-          width="100%"
-          src="http://localhost:3000/movies/IMG_9965.MOV"
-          autoPlay
+      <Grid container justify="center">
+        <Grid item xs={9}>
+          <MoviePlayer onPlaying={this.onPlaying.bind(this)} src={MOCK_SRC} />
+        </Grid>
+        <Grid item xs={6}>
+          <MoveLinkEvent
+            circle
+            id="videoStop"
+            func={this.onStopEvent.bind(this)}
+          >
+            Stop
+          </MoveLinkEvent>
+        </Grid>
+        <Grid item xs={6}>
+          <MoveLinkEvent
+            circle
+            id="videoStart"
+            func={this.onLoadEvent.bind(this)}
+          >
+            Start
+          </MoveLinkEvent>
+        </Grid>
+        <MovieAction
+          id="movieEvent01"
+          func={() => {
+            console.log("test");
+          }}
+          top={120}
+          left={200}
         />
-        <Button onClick={this.onLoadEvent.bind(this)}>再生</Button>
-        <Button onClick={this.onStopEvent.bind(this)}>停止</Button>
-      </div>
+      </Grid>
     );
   }
 }
 
+// イベントの雛形
+// <MovieAction id="movieEvent01" func={() => { console.log("test"); }} top={120} left={200}/>
 export default Movie;
